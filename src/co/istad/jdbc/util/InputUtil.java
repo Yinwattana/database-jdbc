@@ -13,8 +13,14 @@ public class InputUtil {
     }
 
     public static BigDecimal getMoney(String label) {
-        ViewUtil.print(label + "-> ", false);
-        return scanner.nextBigDecimal();
+        do {
+            ViewUtil.print(label + "-> ", false);
+            try {
+                return BigDecimal.valueOf(Double.parseDouble(scanner.nextLine()));
+            } catch (NumberFormatException e) {
+                ViewUtil.print(e.getMessage(), true);
+            }
+        } while(true);
     }
 
     public static Integer getInteger(String label) {

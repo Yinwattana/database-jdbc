@@ -8,6 +8,7 @@ import co.istad.jdbc.service.ProductServiceImpl;
 import co.istad.jdbc.util.InputUtil;
 import co.istad.jdbc.util.ViewUtil;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class JdbcProgram {
@@ -24,11 +25,28 @@ public class JdbcProgram {
             switch (option) {
                 case 0 -> System.exit(0);
                 case 1 -> {
-                    List<Product> productList = productService.findAll();
-                    ViewUtil.printProductList(productList);
+                    try{
+                        List<Product> productList = productService.findAll();
+                        ViewUtil.printProductList(productList);
+                    }catch(RuntimeException e){
+                        ViewUtil.printHeader(e.getMessage());
+                    }
                 }
                 case 2 -> System.out.println("Search");
-                case 3 -> System.out.println("Invalid menu..");
+                case 3 -> {
+                    String code = InputUtil.getText("Enter code");
+                    String name = InputUtil.getText("Enter name");
+                    BigDecimal price = InputUtil.getMoney("Enter price");
+                    Integer qty = InputUtil.getInteger("Enter quantity");
+                    Product product = new Product(code,name,price,qty,true  );
+
+                    try {
+                        productService.save(product);
+                        ViewUtil.printHeader("Product has been saved successfully..");
+                    }catch(RuntimeException e){
+                        ViewUtil.printHeader(e.getMessage());
+                    }
+                }
 
             }
         }while (true);

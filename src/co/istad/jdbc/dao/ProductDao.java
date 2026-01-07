@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ProductDao {
 
+    int save(Product product) throws SQLException;
+
     List<Product> findAll() throws SQLException;
 
 }

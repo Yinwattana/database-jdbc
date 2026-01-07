@@ -3,10 +3,7 @@ package co.istad.jdbc.dao;
 import co.istad.jdbc.config.DbConfig;
 import co.istad.jdbc.model.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +13,26 @@ public class ProductDaoImpl implements ProductDao {
 
     public ProductDaoImpl() {
         conn = DbConfig.getInstance();
+    }
+
+    @Override
+    public int save(Product product) throws SQLException {
+
+        final String SQL = """
+                INSERT INTO products(code, name, price, qty, is_deleted)
+                VALUES (?, ?, ?, ?, ?);
+                """;
+        PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+        pstmt.setString(1, product.getCode());
+        pstmt.setString(2, product.getName());
+        pstmt.setBigDecimal(3, product.getPrice());
+        pstmt.setInt(4, product.getQty());
+        pstmt.setBoolean(5, product.getDeleted());
+
+
+
+        return pstmt.executeUpdate();
     }
 
     @Override
