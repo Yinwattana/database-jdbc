@@ -15,8 +15,8 @@ public class ViewUtil {
         Table table = new Table(1, BorderStyle.UNICODE_ROUND_BOX_WIDE);
         table.setColumnWidth(0, 50, 100);
         table.addCell("Application Menu", cellStyle);
-        table.addCell("1)List All  2)Search  3)Add new  4)Update", cellStyle);
-        table.addCell("5)Delete  0)Exit", cellStyle);
+        table.addCell("1)List All  2)Search  3)Add new  4)Delete", cellStyle);
+        table.addCell(" 0)Exit", cellStyle);
         print(table.render(), true);
     }
 

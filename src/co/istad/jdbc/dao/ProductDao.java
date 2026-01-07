@@ -9,6 +9,10 @@ public interface ProductDao {
 
     int save(Product product) throws SQLException;
 
+    // new code AI
+    void deleteByCode(String code);
+    List<Product> searchByName(String name);
+
     List<Product> findAll() throws SQLException;
 
 }

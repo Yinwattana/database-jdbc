@@ -7,10 +7,11 @@ import co.istad.jdbc.model.Product;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
-
+    // 1. Keep this declaration and constructor
     private final ProductDao productDao;
+
     public ProductServiceImpl() {
         productDao = new ProductDaoImpl();
     }
@@ -35,4 +36,15 @@ public class ProductServiceImpl implements ProductService{
         }
     }
 
+    // 2. I removed the duplicate "private ProductDao productDao..." line that was here
+
+    @Override
+    public void deleteByCode(String code) {
+        productDao.deleteByCode(code);
+    }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        return productDao.searchByName(name);
+    }
 }

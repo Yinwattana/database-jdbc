@@ -32,7 +32,15 @@ public class JdbcProgram {
                         ViewUtil.printHeader(e.getMessage());
                     }
                 }
-                case 2 -> System.out.println("Search");
+
+                //AI case 2
+                case 2 -> {
+                    // SEARCH LOGIC
+                    String name = InputUtil.getText("Enter name to search");
+                    List<Product> results = productService.searchByName(name);
+                    ViewUtil.printProductList(results);
+                }
+                // end case 2
                 case 3 -> {
                     String code = InputUtil.getText("Enter code");
                     String name = InputUtil.getText("Enter name");
@@ -47,6 +55,17 @@ public class JdbcProgram {
                         ViewUtil.printHeader(e.getMessage());
                     }
                 }
+                //Ai case 4
+                case 4 -> {
+                    String code = InputUtil.getText("Enter product code to delete");
+                    try {
+                        productService.deleteByCode(code);
+                        ViewUtil.printHeader("Product deleted successfully!");
+                    } catch (RuntimeException e) {
+                        ViewUtil.printHeader(e.getMessage());
+                    }
+                }
+                // end case 4
 
             }
         }while (true);
