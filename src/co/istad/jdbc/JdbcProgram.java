@@ -8,7 +8,6 @@ import co.istad.jdbc.service.ProductServiceImpl;
 import co.istad.jdbc.util.InputUtil;
 import co.istad.jdbc.util.ViewUtil;
 
-import javax.swing.text.View;
 import java.util.List;
 
 public class JdbcProgram {

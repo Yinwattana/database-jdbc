@@ -36,7 +36,7 @@ public class ProductDaoImpl implements ProductDao {
             product.setName(rs.getString("name"));
             product.setPrice(rs.getBigDecimal("price"));
             product.setQty(rs.getInt("qty"));
-            product.getDeleted();
+            product.setDeleted(rs.getBoolean("is_deleted"));
             productList.add(product);
         }
 

@@ -8,16 +8,16 @@ public class Product {
     private String name;
     private BigDecimal price;
     private Integer qty;
-    private Boolean isDeletd;
+    private Boolean isDeleted;
 
     public Product(){}
 
-    public Product(String code, String name, BigDecimal price, Integer qty, Boolean isDeletd) {
+    public Product(String code, String name, BigDecimal price, Integer qty, Boolean isDeleted) {
         this.code = code;
         this.name = name;
         this.price = price;
         this.qty = qty;
-        this.isDeletd = isDeletd;
+        this.isDeleted = isDeleted;
     }
 
     public Integer getId() {
@@ -60,15 +60,11 @@ public class Product {
         this.qty = qty;
     }
 
-    public Boolean getDeletd() {
-        return isDeletd;
+    public Boolean getDeleted() {
+        return isDeleted;
     }
 
-    public void setDeletd(Boolean deletd) {
-        isDeletd = deletd;
-    }
-
-    public Object getDeleted() {
-        return null;
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 }
