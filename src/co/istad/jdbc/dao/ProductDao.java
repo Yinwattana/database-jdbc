@@ -11,6 +11,8 @@ public interface ProductDao {
 
     // new code AI
     void deleteByCode(String code);
+    void updateByCode(String code, Product product);
+    // end
     List<Product> searchByName(String name);
 
     List<Product> findAll() throws SQLException;

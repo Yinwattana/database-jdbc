@@ -66,6 +66,26 @@ public class JdbcProgram {
                     }
                 }
                 // end case 4
+                case 5 -> {
+                    // 1. Ask for the ID/Code of the product to update
+                    String oldCode = InputUtil.getText("Enter the Product Code you want to UPDATE");
+
+                    // 2. Collect the new information
+                    String newName = InputUtil.getText("Enter new name");
+                    BigDecimal newPrice = InputUtil.getMoney("Enter new price");
+                    Integer newQty = InputUtil.getInteger("Enter new quantity");
+
+                    // 3. Create the updated Product object (assuming status is active/false for deleted)
+                    Product updatedProduct = new Product(oldCode, newName, newPrice, newQty, false);
+
+                    try {
+                        productService.updateByCode(oldCode, updatedProduct);
+                        ViewUtil.printHeader("Product updated successfully!");
+                    } catch (RuntimeException e) {
+                        ViewUtil.printHeader(e.getMessage());
+                    }
+                }
+                //end case5
 
             }
         }while (true);

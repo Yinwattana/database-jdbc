@@ -47,4 +47,10 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> searchByName(String name) {
         return productDao.searchByName(name);
     }
+    // add update
+    @Override
+    public void updateByCode(String code, Product product) {
+        productDao.updateByCode(code, product);
+    }
+    // end
 }

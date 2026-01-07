@@ -16,7 +16,7 @@ public class ViewUtil {
         table.setColumnWidth(0, 50, 100);
         table.addCell("Application Menu", cellStyle);
         table.addCell("1)List All  2)Search  3)Add new  4)Delete", cellStyle);
-        table.addCell(" 0)Exit", cellStyle);
+        table.addCell("5)Update 0)Exit", cellStyle);
         print(table.render(), true);
     }
 

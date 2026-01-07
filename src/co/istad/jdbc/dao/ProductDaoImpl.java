@@ -28,6 +28,30 @@ public class ProductDaoImpl implements ProductDao {
             throw new RuntimeException("Could not delete product: " + e.getMessage());
         }
     }
+    //add update
+    @Override
+    public void updateByCode(String code, Product product) {
+        String sql = """
+            UPDATE products 
+            SET name = ?, price = ?, qty = ?, is_deleted = ? 
+            WHERE code = ?
+            """;
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, product.getName());
+            ps.setBigDecimal(2, product.getPrice());
+            ps.setInt(3, product.getQty());
+            ps.setBoolean(4, product.getDeleted());
+            ps.setString(5, code); // Identifying the product by its original code
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new RuntimeException("Update failed: Product code [" + code + "] not found.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error: " + e.getMessage());
+        }
+    }
+    //end update
 
     @Override
     public List<Product> searchByName(String name) {
